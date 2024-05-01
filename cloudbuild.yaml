@@ -1,4 +1,11 @@
-# syntax=docker/dockerfile:1
-FROM scratch
-ADD hello /
-CMD ["/hello"]
+# Use a lightweight base image
+FROM nginx:alpine
+
+# Copy the contents of the current directory to the container's /usr/share/nginx/html directory
+COPY . /usr/share/nginx/html
+
+# Expose port 80, which is the default port for HTTP traffic
+EXPOSE 80
+
+# Run the nginx web server process
+CMD ["nginx", "-g", "daemon off;"]
